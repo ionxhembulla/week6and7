@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -61,7 +63,14 @@ public class Library
             books.add(book);
             System.out.println("Book added successfully.");
         } else {
-            System.out.println("Author not found.");
+            System.out.println("Author not found. Would you like to add a new author? (y/n)");
+            String choice = scanner.nextLine();
+            if (choice.equals("y")) {
+                addAuthor();
+                Book book = new Book(authors.get(authors.size() - 1), title, pages, isbn);
+                books.add(book);
+                System.out.println("Book added successfully.");
+            }
         }
     }
 
@@ -87,7 +96,10 @@ public class Library
     {
         for(Author author : authors)
         {
-            System.out.println(author.toString());
+            if (!author.getBooks().isEmpty())
+                System.out.println(author.toString() + "\n" + author.printBook());
+            else
+                System.out.println(author.toString() + "\nNo books found");
         }
     }
     public void listOfBooks()
@@ -165,6 +177,8 @@ public class Library
                         author.setDay(newDay);
                         author.setMonth(newMonth);
                         author.setYear(newYear);
+                        author.setAge(Period.between(LocalDate.of(newYear, newMonth, newDay), LocalDate.now()).getYears());
+                        System.out.println("Author modified successfully.");
                         break;
                     default:
                         System.out.println("Invalid choice.");
@@ -206,6 +220,8 @@ public class Library
                         member.setDay(newDay);
                         member.setMonth(newMonth);
                         member.setYear(newYear);
+                        member.setAge(Period.between(LocalDate.of(newYear, newMonth, newDay), LocalDate.now()).getYears());
+                        System.out.println("Member modified successfully.");
                         break;
                     default:
                         System.out.println("Invalid choice.");
@@ -227,9 +243,15 @@ public class Library
             if(author.getName().equals(authorName))
             {
                 Book suggestedBook = author.bookSuggestion();
-                System.out.println("Here is a book suggestion: " + suggestedBook.getTitle());
+                if(suggestedBook != null)
+                {
+                    System.out.println("Here is a book suggestion: " + suggestedBook.getTitle());
+                    return;
+                }
                 return;
             }
+            System.out.println("Author not found.");
+
         }
        System.out.println("Author not found.");
     }

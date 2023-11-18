@@ -18,7 +18,7 @@ public class Main {
             System.out.println("7. Get Book Suggestion");
             System.out.println("8. Lend Book to Member");
             System.out.println("9. Display all the books read by one member");
-            System.out.println("10. Display all the books read by one author");
+            System.out.println("10. Display all the books wrote by one author");
             System.out.println("11. Modify member details");
             System.out.println("12. Modify author details");
             System.out.println("13. Search books with a keyword");

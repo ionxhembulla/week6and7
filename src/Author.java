@@ -33,8 +33,16 @@ public class Author extends Person
 
     public Book bookSuggestion()
     {
-        Random rand = new Random();
-        return books.get(rand.nextInt(books.size()));
+        if (books.size() > 0)
+        {
+            Random rand = new Random();
+            return books.get(rand.nextInt(books.size()));
+        }
+        else
+        {
+            System.out.println("No books found");
+            return null;
+        }
     }
 
     public int getBookIndex(Book book)

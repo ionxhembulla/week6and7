@@ -41,4 +41,7 @@ public class Person
     public void setYear(int year) {
         this.year = year;
     }
+    public void setAge(int age) {
+        this.age = age;
+    }
 }

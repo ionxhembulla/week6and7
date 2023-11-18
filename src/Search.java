@@ -42,7 +42,7 @@ public class Search extends Library
         {
             if(book.getTitle().contains(keyword));
             {
-                System.out.println(book.toString());
+                System.out.println(book);
             }
         }
     }
